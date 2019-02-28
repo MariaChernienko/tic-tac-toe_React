@@ -3,7 +3,8 @@ body {
   padding: 0;
 }
 #root {
-  background: #26bcac;
+  /* background: #26bcac; */
+  background: orange;
 }
 .Game-board {
   display: flex;

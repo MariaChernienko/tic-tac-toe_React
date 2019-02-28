@@ -24,23 +24,24 @@ class Gameboard extends React.Component {
   addStep = id => {
     const { isClickable } = this.state;
 
-    if (!isClickable) {
-      return;
-    }
+    if (!isClickable) return;
     const cells = [...this.state.cells];
+    if (cells[id].value) return;
 
     this.setState(prevState => {
-      if (prevState.step % 2 === 0 && !cells[id].value) {
+      if (prevState.step % 2 === 0) {
         cells[id].value = "cross";
-      } else if (!cells[id].value) {
+      } else {
         cells[id].value = "circle";
       }
 
-      prevState.winner = this.findWinner(cells);
-      if (prevState.winner) prevState.isClickable = false;
-      prevState.step++;
-
-      return { cells };
+      const winner = this.findWinner(cells);
+      return {
+        cells,
+        winner,
+        isClickable: !winner,
+        step: prevState.step + 1,
+      }
     });
   };
 
@@ -66,17 +67,17 @@ class Gameboard extends React.Component {
         return arr[a].value;
       }
     }
+    return null;
   };
 
   resetAll = () => {
     this.setState(prevState => {
-      prevState.isClickable = true;
-      prevState.step = 0;
-      prevState.winner = null;
-      prevState.cells.map(cell => (cell.value = null));
 
       return {
-        prevState
+        isClickable: true,
+        step: 0,
+        winner: null,
+        cells: prevState.cells.map(cell => ({...cell, value: null})),
       };
     });
   };
