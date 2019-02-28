@@ -1,5 +1,6 @@
 {
   "name": "tic-tac-toe_react",
+  "homepage": "https://mariachernienko.github.io/tic-tac-toe_react/build/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

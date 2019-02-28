@@ -1,33 +1,112 @@
-.App {
+body {
+  margin: 0;
+  padding: 0;
+}
+#root {
+  background: #26bcac;
+}
+.Game-board {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+}
+.Game h1,
+.Game h2 {
+  margin-top: 0;
   text-align: center;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Game-board-cell {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  width: 120px;
+  height: 120px;
+  border-bottom: 10px solid rgba(0, 0, 0, 0.4);
+  border-right: 10px solid rgba(0, 0, 0, 0.4);
+  border-radius: 3%;
+  color: orange;
+  font-size: 0px;
 }
 
-.App-link {
-  color: #61dafb;
+.Game-board-cell:nth-child(3n) {
+  border-right: 10px solid transparent;
+}
+.Game-board-cell:nth-child(n + 7) {
+  border-bottom: 10px solid transparent;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.circle {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 80px;
+  height: 80px;
+  border: 10px solid rgb(53, 51, 51);
+  border-radius: 50%;
+}
+.cross {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+}
+
+.cross:before,
+.cross:after {
+  position: absolute;
+  top: 10px;
+  left: 55px;
+  content: " ";
+  height: 100%;
+  width: 10px;
+  background-color: rgb(53, 51, 51);
+}
+.cross:before { 
+  transform: rotate(45deg);
+}
+
+.cross:after {
+  transform: rotate(-45deg);
+}
+.Modal-window {
+  position: absolute;
+  top: 80px;
+  right: 200px;
+  width: 200px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  padding: 30px 0;
+}
+
+.Modal-window:before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+
+  border-top: 14px solid transparent;
+  border-bottom: 14px solid transparent;
+  border-right: 14px solid rgba(255, 255, 255, 0.7);
+  left: -14px;
+  top: 10px;
+}
+
+.Button {
+  margin: 30px auto;
+  width: 300px;
+  padding: 20px;
+  border-radius: 7px;
+  font-size: 26px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: rgb(4, 158, 143);
 }
